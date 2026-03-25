@@ -1,14 +1,14 @@
 package se.su.ovning1;
 
-public abstract class Recroding { //implements VAT25
+public abstract class Recording extends Item implements PriceableWithVAT25 {
         
     private String artist;
     private int year;
     private int condition;
     private double price;
 
-    protected Recording (String name, String artist, int year, int condition, double price)
-{
+    protected Recording (String name, String artist, int year, int condition, double price){
+        super(name);
         this.artist = artist;
         this.year = year;
         this.condition = condition;
@@ -42,10 +42,8 @@ public abstract class Recroding { //implements VAT25
         return year;
     }
 
-    public abstract String getType(){
-        return type;
-    }
- */
+    public abstract String getType();
+
     protected double getOriginalPrice(){
         return price;
     }

@@ -1,14 +1,13 @@
 package se.su.ovning1;
 
-
-public class Book extends Item { //implements PriceableWithVAT6 
+public class Book extends Item implements PriceableWithVAT6 {
 
     private double price;
     private boolean bound;
     private String author;
     
     
-    Book(String name, String author, double price, boolean bound){
+   public Book(String name, String author, double price, boolean bound){
         super(name);
         this.author = author;
         this.price = price;
@@ -21,7 +20,7 @@ public class Book extends Item { //implements PriceableWithVAT6
     }
 
     public double getPrice(){
-        if (bound == true){
+        if (bound){
             return price *1.3;
         }
         return price;
