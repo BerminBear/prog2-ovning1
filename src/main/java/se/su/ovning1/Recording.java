@@ -1,13 +1,13 @@
 package se.su.ovning1;
 
 public abstract class Recording extends Item implements PriceableWithVAT25 {
-        
-    private String artist;
-    private int year;
-    private int condition;
-    private double price;
 
-    protected Recording (String name, String artist, int year, int condition, double price){
+    private final String artist;
+    private final int year;
+    private final double price;
+    private int condition;
+
+    protected Recording(String name, String artist, int year, int condition, double price) {
         super(name);
         this.artist = artist;
         this.year = year;
@@ -15,38 +15,36 @@ public abstract class Recording extends Item implements PriceableWithVAT25 {
         this.price = price;
     }
 
-    public String getArtist(){
+
+    public String getArtist() {
         return artist;
     }
 
-/*     public String getType(){
-        //
-    } */
-
-    public int getCondition(){
-
-        // Sätt condition värde här. Får inte vara över 10 och inte under 0
-        return condition;
-    }
-
-    public double getPrice(){
-        //Sätt in ett sätt att beräkna i steg av tio beroende på condition
-        return price;
-    }
-
-/*     public String toString(){
-
-    } */
-
-    public int getYear(){
+    public int getYear() {
         return year;
     }
 
     public abstract String getType();
 
-    protected double getOriginalPrice(){
+    public int getCondition() {
+        return condition;
+    }
+
+    protected double getOriginalPrice() {
         return price;
     }
 
+    public double getPrice() {
+        double calculatedPrice = price * (condition / 10.0);
+
+        return Math.max(10.0, calculatedPrice);
+    }
+
+    public String toString() {
+        return getType() + " : name = " + getName() + " , artist = '" + artist + 
+               "' , year =" + year + " , condition =" + condition + 
+               " , original price =" + price + " , price =" + getPrice() + 
+               " , price + vat =" + getPriceWithVAT();
+    }
 
 }

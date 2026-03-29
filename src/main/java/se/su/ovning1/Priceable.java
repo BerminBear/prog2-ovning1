@@ -7,7 +7,7 @@ public double getPrice();
 
 public double getVAT();
 
-public default double getPriceWithWAT(){
-        return 0.0;
+public default double getPriceWithVAT(){
+        return getPrice() * (1 + getVAT());
     }
 }
